@@ -15,7 +15,9 @@ public class Cpit251 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hello Github World :) ");
+        System.out.println("Hello marwah to Github World :) ");
+        
+        System.out.println("Hello wed to Github World :) ");
     }
     
 }
