@@ -38,7 +38,7 @@ public class Services{
  public ServicesCatalog(){
      ListOfServices = new ArrayList<>();
      
-     ListOfServices.add(new Services("shipment companies","help to chooes the best comapny to ship yout product") );
+     ListOfServices.add(new Services("shipment companies","help to chooes the best comapny to ship yout products") );
      ListOfServices.add(new Services("business consulting","provide best plans to your problems") );
      ListOfServices.add(new Services("technical issues ","We'll guide you to graphic designers and developers who suit the nature of your product") );   
  }
