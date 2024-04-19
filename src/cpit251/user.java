@@ -5,14 +5,14 @@ public class user {
     //attributes
     public String firstName;
     public String lastName;
-    public int phoneNumber;
+    public String phoneNumber;
     public String email;
-    public int id;
+    public String id;
     public String passWord;
     
     // 1st Constructor
 
-    public user(String firstName, String lastName, int phoneNumber, String email, int id, String passWord) {
+    public user(String firstName, String lastName, String phoneNumber, String email, String id, String passWord) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
@@ -39,11 +39,11 @@ public class user {
         this.lastName = lastName;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -55,11 +55,11 @@ public class user {
         this.email = email;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
     

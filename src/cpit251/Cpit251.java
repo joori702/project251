@@ -5,21 +5,46 @@
  */
 package cpit251;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  *
  * @author HQ
  */
 public class Cpit251 {
 
-    /**
-     * @param args the command line arguments
-     */
+    static ArrayList<Owner> AddOwner = new ArrayList<Owner>();
+    
     public static void main(String[] args) {
-        System.out.println("Hello marwah to Github World :) ");
-        
-        System.out.println("Hello wed to Github World :) ");
-
-        System.out.println("Hello Amjad to Github world :)");
+       Scanner scan = new Scanner(System.in);
+       owner(scan, AddOwner);
     }
     
+    public static void owner(Scanner scan,ArrayList AddOwner){
+        System.out.print("Enter owner First name: ");
+        String firstName = scan.next();
+        
+        System.out.print("Enter owner last name: ");
+        String lastName = scan.next();
+        
+        System.out.print("Enter store name: ");
+        String BusinessName = scan.next();
+        
+        System.out.print("Enter onwe PhoneNumber: ");
+        String phoneNumber = scan.next();
+        
+        System.out.print("Enter store Email: ");
+        String email = scan.next();
+        
+        System.out.print("Enter store ID: ");
+        String id = scan.next();
+        
+        System.out.print("Enter store password: ");
+        String passWord = scan.next();
+        
+        
+        Owner Oinfo = new Owner( firstName, lastName, BusinessName, phoneNumber, email, id, passWord);
+        Oinfo.addOwner(AddOwner, Oinfo);
+    }
 }

@@ -1,6 +1,8 @@
 
 package cpit251;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author DELL
@@ -11,7 +13,7 @@ public class Owner extends user{
     
     //Constructor
 
-    public Owner(String BusinessName, String firstName, String lastName, int phoneNumber, String email, int id, String passWord) {
+   public Owner(String firstName, String lastName, String BusinessName, String phoneNumber, String email, String id, String passWord) {
         super(firstName, lastName, phoneNumber, email, id, passWord);
         this.BusinessName = BusinessName;
     }
@@ -25,6 +27,11 @@ public class Owner extends user{
 
     public void setBusinessName(String BusinessName) {
         this.BusinessName = BusinessName;
+    }
+    
+     void addOwner(ArrayList<Owner> AddOwner, Owner Oinfo) {
+        AddOwner.add(Oinfo);
+        System.out.println(Oinfo.toString());
     }
     
 }
