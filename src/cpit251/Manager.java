@@ -10,7 +10,7 @@ public class Manager extends user{
         super(firstName, lastName, phoneNumber, email, id, passWord);
     }
     
-    public static void addService(Services catalog, String serviceName, String description, double price) {
+    public void addService(Services catalog, String serviceName, String description, double price) {
         // Get the ArrayLists from the Services class
         ArrayList<String> serviceNames = catalog.getServiceNames();
         ArrayList<String> descriptions = catalog.getDescriptions();
