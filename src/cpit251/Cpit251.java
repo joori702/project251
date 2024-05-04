@@ -30,37 +30,34 @@ public class Cpit251 {
        int choice = 0;
        Scanner input = new Scanner(System.in);
        Services catalog = new Services();
+       ArrayList<Integer> selectedServices = new ArrayList<>();
        catalog.displayCatalog();
+  
      
-       while (true) {
+       while (true) 
+       {
             if (input.hasNextInt())
             {
                 choice = input.nextInt();
-                if (choice >= 1 && choice <catalog.getServiceNames().length)
-                {
+                if (choice >= 1 && choice < catalog.getServiceNames().size()) {
+                    
                     totalPrice += catalog.checkType(choice);
+                    selectedServices.add(choice);
                     System.out.print("Please enter the number corresponding to the next service you'd like to book: ");
-                } 
-                //if user enter 4.finish immediatly without select any service
-                if (choice == catalog.getServiceNames().length && totalPrice == 0.0 ){
-                    System.out.println("Please enter the number corresponding to the next service you'd like to book:(You must select service before finishing)\n");
+                    
+                } else if (choice == catalog.getServiceNames().size() && totalPrice == 0.0) {
+                    System.out.println("Please enter the number corresponding to the next service you'd like to book:(You have to select a service)");
+                } else if (choice == catalog.getServiceNames().size() && totalPrice != 0.0) {
+                    break;
+                } else {
+                    System.out.println("Invalid input. Please enter a number between 1 and " + (catalog.getServiceNames().size() ));
                 }
-                //if user enter 4.finish after selecting services
-                else if (choice == catalog.getServiceNames().length && totalPrice != 0.0){
-                    break;}
-                //if user enter number out of legall range
-                else if(!(choice >= 1 && choice <=catalog.getServiceNames().length)){
-                    System.out.println("Invalid input. Please enter a number between 1 and " + catalog.getServiceNames().length);
-                     }
-   
-            } 
-            else //if user enter string instead of numbers
-            {
+            } else {
                 System.out.println("Invalid input. Please enter a number.");
                 input.next();
             }
         }
-     //compute the total amount of selected services
+      //compute the total amount of selected services
                     totalWithTax=ComputeTax(totalPrice)+totalPrice;
                     System.out.println("");
                     System.out.println("Total amount: " + (int)totalWithTax +" SR");
