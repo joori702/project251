@@ -17,12 +17,46 @@ public class Cpit251 {
     public static double ComputeTax(double total){
         return total*0.15;
     }
-    
+    static ArrayList<Cousulter> AddCousulter = new ArrayList<Cousulter>();
     static ArrayList<Owner> AddOwner = new ArrayList<Owner>();
+    static ArrayList<Manager> AddManager = new ArrayList<Manager>();
     
     public static void main(String[] args) {
        Scanner scan = new Scanner(System.in);
        owner(scan, AddOwner);
+       Manager(scan, AddManager);
+       String choose = null;
+       
+       //login and signup
+       do{
+            System.out.println("-----------------------------------------------/n");
+            System.out.println("               Welcome to Yusr                 /n");
+            System.out.println("-----------------------------------------------/n");
+            System.out.print("Choose L for Login and S for signup or E for exit: ");
+            choose=scan.next();
+        if(choose.equalsIgnoreCase("S")){
+            System.out.print("Choose C for Cuonsulter and O for Owner and M for Manager: ");
+            String choose1 = scan.next();
+                if(choose1.equalsIgnoreCase("C")){
+                       Cousulter (scan, AddCousulter);
+                }
+                else if(choose1.equalsIgnoreCase("O")){
+                        owner(scan, AddOwner); 
+                }
+                else{
+                     Manager(scan, AddManager); 
+                }
+        }
+        else if(choose.equalsIgnoreCase("L"))
+            System.out.println("Welcom Back");
+        
+        else
+            System.out.println("Thank you, visit us again");
+        }while(!choose.equalsIgnoreCase("E"));
+     
+        System.out.println("");
+
+    
        
        //display catalog section
        double totalWithTax;
@@ -89,6 +123,15 @@ public class Cpit251 {
         
         Owner Oinfo = new Owner( firstName, lastName, BusinessName, phoneNumber, email, id, passWord);
         Oinfo.addOwner(AddOwner, Oinfo);
+    }
+
+    private static void Manager(Scanner scan, ArrayList AddManager) {
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private static void Cousulter(Scanner scan, ArrayList AddCousulter) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
 }
