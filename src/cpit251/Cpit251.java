@@ -139,10 +139,14 @@ public class Cpit251 {
         System.out.println("Enter service price: ");
         double servicePrice = scan.nextDouble();
         
+        /*
         Manager sino = new Manager(catalog,serviceName ,serviceDescription,servicePrice );
         Services Sinfo = new Services(catalog,serviceName ,serviceDescription,servicePrice );
         sinfo.addService(addService ,Sinfo );
+        */
         
+        Manager M1 = new Manager();
+        M1.addService(catalog, serviceName, serviceDescription, servicePrice);
         
         
     }
