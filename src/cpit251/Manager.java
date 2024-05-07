@@ -6,6 +6,9 @@ import java.util.ArrayList;
 public class Manager extends user{
 
      //Constructor 
+     public Manager( ){
+    
+    }
     public Manager(String firstName, String lastName, String phoneNumber, String email, String id, String passWord) {
         super(firstName, lastName, phoneNumber, email, id, passWord);
     }

@@ -10,7 +10,10 @@ public class user {
     public String id;
     public String passWord;
     
-    // 1st Constructor
+    //  Constructor
+    public user(){
+        
+    }
 
     public user(String firstName, String lastName, String phoneNumber, String email, String id, String passWord) {
         this.firstName = firstName;

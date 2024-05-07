@@ -126,11 +126,29 @@ public class Cpit251 {
     }
 
     private static void Manager(Scanner scan, ArrayList AddManager) {
+        System.out.println("Enter to view services catalog: ");
+        Services catalog = new Services();
+        catalog.displayCatalog();
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.println("Enter the sevice name: ");
+        String serviceName = scan.next();
+        
+        System.out.println("Enter service description: ");
+        String serviceDescription = scan.next();
+        
+        System.out.println("Enter service price: ");
+        double servicePrice = scan.nextDouble();
+        
+        Manager sino = new Manager(catalog,serviceName ,serviceDescription,servicePrice );
+        Services Sinfo = new Services(catalog,serviceName ,serviceDescription,servicePrice );
+        sinfo.addService(addService ,Sinfo );
+        
+        
+        
     }
 
     private static void Cousulter(Scanner scan, ArrayList AddCousulter) {
+        
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
