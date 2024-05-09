@@ -23,8 +23,8 @@ public class Cpit251 {
     
     public static void main(String[] args) {
        Scanner scan = new Scanner(System.in);
-       owner(scan, AddOwner);
-       Manager(scan, AddManager);
+//       owner(scan, AddOwner);
+//       Manager(scan, AddManager);
        String choose = null;
        
        //login and signup
@@ -35,22 +35,13 @@ public class Cpit251 {
             System.out.print("Choose L for Login and S for signup or E for exit: ");
             choose=scan.next();
         if(choose.equalsIgnoreCase("S")){
-            System.out.print("Choose C for Cuonsulter and O for Owner and M for Manager: ");
-            String choose1 = scan.next();
-                if(choose1.equalsIgnoreCase("C")){
-                       Cousulter (scan, AddCousulter);
-                }
-                else if(choose1.equalsIgnoreCase("O")){
-                        owner(scan, AddOwner); 
-                }
-                else{
-                     Manager(scan, AddManager); 
-                }
+            LandS(scan);
         }
-        else if(choose.equalsIgnoreCase("L"))
+        else if(choose.equalsIgnoreCase("L")){
             System.out.println("Welcom Back");
+            LandS(scan);
         
-        else
+        }else
             System.out.println("Thank you, visit us again");
         }while(!choose.equalsIgnoreCase("E"));
      
@@ -59,10 +50,13 @@ public class Cpit251 {
     
        
        //display catalog section
-       double totalWithTax;
+    }
+    
+    public static void Cata(Scanner scan){
+        double totalWithTax;
        double totalPrice = 0.0;
        int choice = 0;
-       Scanner input = new Scanner(System.in);
+//       Scanner input = new Scanner(System.in);  canceled
        Services catalog = new Services();
        ArrayList<Integer> selectedServices = new ArrayList<>();
        catalog.displayCatalog();
@@ -70,9 +64,9 @@ public class Cpit251 {
      
        while (true) 
        {
-            if (input.hasNextInt())
+            if (scan.hasNextInt())
             {
-                choice = input.nextInt();
+                choice = scan.nextInt();
                 if (choice >= 1 && choice < catalog.getServiceNames().size()) {
                     
                     totalPrice += catalog.checkType(choice);
@@ -88,14 +82,35 @@ public class Cpit251 {
                 }
             } else {
                 System.out.println("Invalid input. Please enter a number.");
-                input.next();
+                scan.next();
             }
         }
       //compute the total amount of selected services
                     totalWithTax=ComputeTax(totalPrice)+totalPrice;
                     System.out.println("");
                     System.out.println("Total amount: " + (int)totalWithTax +" SR");
-                    input.close();
+                    
+    
+    }
+    
+    
+    public static void LandS(Scanner scan){
+        System.out.print("Choose C for Cuonsulter and O for Owner and M for Manager: ");
+            String choose1 = scan.next();
+                if(choose1.equalsIgnoreCase("C")){
+                       Cousulter (scan, AddCousulter);
+                       
+                }
+                else if(choose1.equalsIgnoreCase("O")){
+                        owner(scan, AddOwner); 
+                        Cata(scan);
+                }
+                else{
+                     Manager(scan, AddManager); 
+                     
+                }
+        
+        
     }
     
     public static void owner(Scanner scan,ArrayList AddOwner){
