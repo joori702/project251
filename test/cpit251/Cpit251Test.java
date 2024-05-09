@@ -5,6 +5,9 @@
  */
 package cpit251;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Scanner;
 import org.junit.After;
@@ -56,11 +59,13 @@ public class Cpit251Test {
      */
     @Test
     public void testMain() {
+ 
         System.out.println("main");
         String[] args = null;
         Cpit251.main(args);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+
     }
 
     /**

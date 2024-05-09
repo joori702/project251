@@ -29,16 +29,16 @@ public class Cpit251 {
        
        //login and signup
        do{
-            System.out.println("-----------------------------------------------/n");
-            System.out.println("               Welcome to Yusr                 /n");
-            System.out.println("-----------------------------------------------/n");
+            System.out.println("-----------------------------------------------\n");
+            System.out.println("               Welcome to Yusr                 \n");
+            System.out.println("-----------------------------------------------\n");
             System.out.print("Choose L for Login and S for signup or E for exit: ");
             choose=scan.next();
         if(choose.equalsIgnoreCase("S")){
             LandS(scan);
         }
         else if(choose.equalsIgnoreCase("L")){
-            System.out.println("Welcom Back");
+            System.out.println("Welcome Back");
             LandS(scan);
         
         }else
