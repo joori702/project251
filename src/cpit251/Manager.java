@@ -31,5 +31,8 @@ public class Manager extends user{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
  
-    
+     void addManager(ArrayList<Manager> AddManager, Manager Minfo) {
+        AddManager.add(Minfo);
+        System.out.println(Minfo.toString());
+    }
 }

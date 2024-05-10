@@ -13,7 +13,9 @@ import java.util.Scanner;
  * @author HQ
  */
 public class Cpit251 {
-    
+    public static double totalWithTax;
+    public static double totalPrice = 0.0;
+    public static ArrayList<Integer> selectedServices = new ArrayList<>();
     public static double ComputeTax(double total){
         return total*0.15;
     }
@@ -105,7 +107,7 @@ public class Cpit251 {
             String choose1 = scan.next();
                 if(choose1.equalsIgnoreCase("C")){
                        Cousulter (scan, AddCousulter);
-                       
+                       sessionsSchedule();
                 }
                 else if(choose1.equalsIgnoreCase("O")){
                         owner(scan, AddOwner); 
@@ -114,7 +116,7 @@ public class Cpit251 {
                 }
                 else{
                      Manager(scan, AddManager); 
-                     
+                     managerControls(scan);
                 }
         
         
@@ -146,9 +148,42 @@ public class Cpit251 {
         Owner Oinfo = new Owner( firstName, lastName, BusinessName, phoneNumber, email, id, passWord);
         Oinfo.addOwner(AddOwner, Oinfo);
     }
+    //adding a manager 
+    public static void Manager(Scanner scan, ArrayList AddManager) {
+        //adding a manager
+        System.out.print("Enter owner First name: ");
+        String firstName = scan.next();
 
-    private static void Manager(Scanner scan, ArrayList AddManager) {
-        System.out.println("Enter to view services catalog: ");
+        System.out.print("Enter owner last name: ");
+        String lastName = scan.next();
+
+        System.out.print("Enter onwer PhoneNumber: ");
+        String phoneNumber = scan.next();
+
+        System.out.print("Enter store Email: ");
+        String email = scan.next();
+
+        System.out.print("Enter your employee ID: ");
+        String id = scan.next();
+
+        System.out.print("Enter your password: ");
+        String passWord = scan.next();
+
+
+        Manager Minfo = new Manager( firstName, lastName, phoneNumber, email, id, passWord);
+        Minfo.addManager(AddManager, Minfo);
+
+    }
+    //manager controls
+    public static void managerControls(Scanner scan) {
+        report Report=new report();
+        Owner owner= new Owner();
+        
+        System.out.println("Enter to 'v' to view services catalog or Enter 'p' to print a report: ");
+        //if v or p
+        String choose2 = scan.next();
+        
+        if(choose2.equalsIgnoreCase("v")){
         Services(scan, ServiceCatalog);
         
         System.out.println("Enter the sevice name: ");
@@ -169,17 +204,52 @@ public class Cpit251 {
         Services newAddService = new Services(serviceName, serviceDescription, servicePrice);
         sCata.addService(ServiceCatalog, newAddService);
         System.out.println("Service added successfully");
+        }
         
+        else if(choose2.equalsIgnoreCase("p")){
+        Report.generateReport(owner.getFirstName(), selectedServices, totalPrice, totalWithTax);
+        }
+
         
         
         
         
     }
 
-    private static void Cousulter(Scanner scan, ArrayList AddCousulter) {
+    public static void Cousulter(Scanner scan, ArrayList AddCousulter) {
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        System.out.print("Enter owner First name: ");
+        String firstName = scan.next();
+
+        System.out.print("Enter owner last name: ");
+        String lastName = scan.next();
+
+        System.out.print("Enter onwe PhoneNumber: ");
+        String phoneNumber = scan.next();
+
+        System.out.print("Enter store Email: ");
+        String email = scan.next();
+
+        System.out.print("Enter employee ID: ");
+        String id = scan.next();
+
+        System.out.print("Enter your password: ");
+        String passWord = scan.next();
+
+        Cousulter Cinfo = new Cousulter( firstName, lastName, phoneNumber, email, id, passWord);
+        Cinfo.addCousulter(AddCousulter, Cinfo);
     }
+    
+    public static void sessionsSchedule(){
+    System.out.println("your sessions schedule for the week ");
+    System.out.println("------------------------------------------------------------------------");
+    System.out.println("Sunday:    1. 8-9am session,    2. 10-11am session,   3. 12-1pm session");
+    System.out.println("Monday:    No Sessions");
+    System.out.println("Tuesday:   1. 8-9am session,    2. 11-12am session");
+    System.out.println("Wednesday: 1. 8-9am session,    2. 10-11am session,   3. 12-1pm session");
+    System.out.println("Thursday:  1. 9-10am session,   2. 10-11am session,   3. 11-12am session");
+    System.out.println("------------------------------------------------------------------------");
+}
     
     //Display catalog Section
     private static void Services(Scanner scan, ArrayList ServiceCatalog){

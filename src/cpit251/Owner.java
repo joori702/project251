@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 public class Owner extends user{
     //attributes
-    private String BusinessName;
+    public String BusinessName;
     
     //Constructor
 
@@ -17,10 +17,21 @@ public class Owner extends user{
         super(firstName, lastName, phoneNumber, email, id, passWord);
         this.BusinessName = BusinessName;
     }
+
+    public Owner() {
+    }
+
+    
     
     
     //getters and setters
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    
+   
     public String getBusinessName() {
         return BusinessName;
     }
