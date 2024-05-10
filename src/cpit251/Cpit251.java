@@ -20,7 +20,9 @@ public class Cpit251 {
     static ArrayList<Cousulter> AddCousulter = new ArrayList<Cousulter>();
     static ArrayList<Owner> AddOwner = new ArrayList<Owner>();
     static ArrayList<Manager> AddManager = new ArrayList<Manager>();
-    
+    static ArrayList<Services> ServiceCatalog = new ArrayList<>();
+
+//-----------------------------------------------------------------------------------
     public static void main(String[] args) {
        Scanner scan = new Scanner(System.in);
 //       owner(scan, AddOwner);
@@ -49,13 +51,16 @@ public class Cpit251 {
 
     
        
-       //display catalog section
+      
     }
-    
-    public static void Cata(Scanner scan){
+//--------------------------------------------------------------
+    //display catalog section
+ 
+  /**  
+   public static void Cata(Scanner scan){
         double totalWithTax;
-       double totalPrice = 0.0;
-       int choice = 0;
+        double totalPrice = 0.0;
+        int choice = 0;
 //       Scanner input = new Scanner(System.in);  canceled
        Services catalog = new Services();
        ArrayList<Integer> selectedServices = new ArrayList<>();
@@ -92,6 +97,7 @@ public class Cpit251 {
                     
     
     }
+ */
     
     
     public static void LandS(Scanner scan){
@@ -103,7 +109,8 @@ public class Cpit251 {
                 }
                 else if(choose1.equalsIgnoreCase("O")){
                         owner(scan, AddOwner); 
-                        Cata(scan);
+                        //Cata(scan);
+                        Services(scan, ServiceCatalog);//updated
                 }
                 else{
                      Manager(scan, AddManager); 
@@ -142,8 +149,7 @@ public class Cpit251 {
 
     private static void Manager(Scanner scan, ArrayList AddManager) {
         System.out.println("Enter to view services catalog: ");
-        Services catalog = new Services();
-        catalog.displayCatalog();
+        Services(scan, ServiceCatalog);
         
         System.out.println("Enter the sevice name: ");
         String serviceName = scan.next();
@@ -159,9 +165,13 @@ public class Cpit251 {
         Services Sinfo = new Services(catalog,serviceName ,serviceDescription,servicePrice );
         sinfo.addService(addService ,Sinfo );
         */
+        Services sCata = new Services();
+        Services newAddService = new Services(serviceName, serviceDescription, servicePrice);
+        sCata.addService(ServiceCatalog, newAddService);
+        System.out.println("Service added successfully");
         
-        Manager M1 = new Manager();
-        M1.addService(catalog, serviceName, serviceDescription, servicePrice);
+        
+        
         
         
     }
@@ -170,5 +180,55 @@ public class Cpit251 {
         
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    //Display catalog Section
+    private static void Services(Scanner scan, ArrayList ServiceCatalog){
+        
+    Services s1 = new Services("Shipment companies", "help to choose the best company to ship your products", 100.0);
+    Services s2 = new Services("Business consulting", "Offer the best techniques for your concerns", 200.0);
+    Services s3 = new Services("Technical issues", "We'll guide you to graphic designers and developers who suit the nature of your product", 300.0);
+    Services s4 = new Services("Finish", "(calculate the total amount)", 0.0);
+
+    Services sCata = new Services();
+    sCata.addService(ServiceCatalog, s1);
+    sCata.addService(ServiceCatalog, s2);
+    sCata.addService(ServiceCatalog, s3);
+    sCata.addService(ServiceCatalog, s4);
+    sCata.displayCatalog(ServiceCatalog);
+    
+    int choice=0;
+    double totalWithTax;
+    double totalPrice = 0.0;
+    ArrayList<Integer> selectedServices = new ArrayList<>();
+
+    while (true)
+    {
+        if (scan.hasNextInt()) {
+            choice = scan.nextInt();
+            if (choice >= 1 && choice < ServiceCatalog.size()) {
+
+                totalPrice += sCata.checkType(choice, ServiceCatalog);
+                selectedServices.add(choice);
+                System.out.print("Please enter the number corresponding to the next service you'd like to book: ");
+
+            } else if (choice == ServiceCatalog.size() && totalPrice == 0.0) {
+                System.out.println("Please enter the number corresponding to the next service you'd like to book:(You have to select a service)");
+            } else if (choice == ServiceCatalog.size() && totalPrice != 0.0) {
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter a number between 1 and " + ServiceCatalog.size());
+            }
+        } else {
+            System.out.println("Invalid input. Please enter a number.");
+            scan.next();
+        }
+    }
+                    totalWithTax=ComputeTax(totalPrice)+totalPrice;
+                    System.out.println("");
+                    
+                    System.out.println("Total amount: " + (int)totalWithTax +" SR");
+    
      
+}
+    
 }

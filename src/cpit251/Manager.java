@@ -14,7 +14,7 @@ public class Manager extends user{
     }
     
     
-    
+    /**
     public void addService(Services catalog, String serviceName, String description, double price) {
         // Get the ArrayLists from the Services class
         ArrayList<String> serviceNames = catalog.getServiceNames();
@@ -26,7 +26,7 @@ public class Manager extends user{
         descriptions.add(description);
         prices.add(price);
     }
-
+*/
     Services getService(String serviceName) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

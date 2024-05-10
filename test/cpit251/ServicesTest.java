@@ -95,18 +95,48 @@ public class ServicesTest {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         
-        Services instance = new Services();
-        instance.displayCatalog();
+        ArrayList<Services> ServiceCatalog = new ArrayList<>();
+        Services s1 = new Services("Shipment companies", "help to choose the best company to ship your products", 100.0);
+        Services s2 = new Services("Business consulting", "Offer the best techniques for your concerns", 200.0);
+        Services s3 = new Services("Technical issues", "We'll guide you to graphic designers and developers who suit the nature of your product", 300.0);
+        Services s4 = new Services("Finish", "(calculate the total amount)", 0.0);
+
+        Services sCata = new Services();
+        sCata.addService(ServiceCatalog, s1);
+        sCata.addService(ServiceCatalog, s2);
+        sCata.addService(ServiceCatalog, s3);
+        sCata.addService(ServiceCatalog, s4);
+        sCata.displayCatalog(ServiceCatalog);
+
         
         String expectedResult = ".............................Welcome to our services catalog.............................\n" +System.getProperty("line.separator"); 
-        expectedResult += "1. shipment companies : help to choose the best company to ship your products - 100.0 SR" + System.getProperty("line.separator");
-        expectedResult += "2. business consulting : Offer the best techniques for your concerns - 200.0 SR" + System.getProperty("line.separator");
-        expectedResult += "3. technical issues : We'll guide you to graphic designers and developers who suit the nature of your product - 300.0 SR" + System.getProperty("line.separator");
-        expectedResult += "4. Finish (calculate the total amount)" + System.getProperty("line.separator");
-        expectedResult += "Please enter the number corresponding to the service you'd like to book: " + System.getProperty("line.separator");
+        expectedResult += "1. Shipment companies : help to choose the best company to ship your products - 100.0 SR" + System.getProperty("line.separator");
+        expectedResult += "2. Business consulting : Offer the best techniques for your concerns - 200.0 SR" + System.getProperty("line.separator");
+        expectedResult += "3. Technical issues : We'll guide you to graphic designers and developers who suit the nature of your product - 300.0 SR" + System.getProperty("line.separator");
+        expectedResult += "4. Finish : (calculate the total amount) - 0.0 SR" + System.getProperty("line.separator");
+        expectedResult += "Please enter the number corresponding to the service you'd like to book:" + System.getProperty("line.separator");
         
         assertEquals(expectedResult, out.toString());
+    }/**
+     * .............................Welcome to our services catalog.............................
+
+1. Shipment companies : help to choose the best company to ship your products - 100.0 SR
+2. Business consulting : Offer the best techniques for your concerns - 200.0 SR
+3. Technical issues : We'll guide you to graphic designers and developers who suit the nature of your product - 300.0 SR
+4. Finish : (calculate the total amount) - 0.0 SR
+Please enter the number corresponding to the service you'd like to book: 
+* 
+* public void displayCatalog(ArrayList<Services> serviceCatalog) {
+    System.out.println(".............................Welcome to our services catalog.............................\n");
+
+    for (int i = 0; i < serviceCatalog.size(); i++) {
+        Services service = serviceCatalog.get(i);
+        System.out.println((i + 1) + ". " + service.getName() + " : " + service.getDescription() + " - " + service.getPrice() + " SR");
     }
+
+    System.out.println("Please enter the number corresponding to the service you'd like to book:");
+}
+     */
 
     /**
     @Test

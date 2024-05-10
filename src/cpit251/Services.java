@@ -12,11 +12,38 @@ package cpit251;
 import java.util.ArrayList;
 
  public class Services {
+     /**
     // Arrays to store service details
     private ArrayList<String> serviceNames;
     private ArrayList<String> descriptions;
     private ArrayList<Double> prices;
+*/
+    private String name;
+    private String description;
+    private double price;
+    
+    public Services(){
+     
+ }
+public Services(String name, String description, double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+}
+public String getName() {
+        return name;
+    }
 
+    // Getter method for description
+    public String getDescription() {
+        return description;
+    }
+
+    // Getter method for price
+    public double getPrice() {
+        return price;
+    }
+/**
 public Services(){
         serviceNames = new ArrayList<>();
         descriptions = new ArrayList<>();
@@ -39,6 +66,14 @@ public Services(){
         descriptions.add("(calculate the total amount)");
         prices.add(0.0);
 }
+*/
+    /**
+public Services(String name, String description, double price){
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    
+}
 // Getter method for serviceNames
     public ArrayList<String> getServiceNames() {
         return serviceNames;
@@ -53,6 +88,9 @@ public Services(){
     public ArrayList<Double> getPrices() {
         return prices;
     }
+    */
+    
+/**
  public void displayCatalog() {
         System.out.println(".............................Welcome to our services catalog.............................\n");
 
@@ -63,6 +101,23 @@ public Services(){
         System.out.println(serviceNames.size() + ". " + serviceNames.get(serviceNames.size() - 1) + " " + descriptions.get(serviceNames.size() - 1));
         System.out.println("Please enter the number corresponding to the service you'd like to book: ");
     }
+    */
+    
+     void addService(ArrayList<Services> ServiceCatalog, Services serviceDetails) {
+        ServiceCatalog.add(serviceDetails);
+    }
+    
+    public void displayCatalog(ArrayList<Services> serviceCatalog) {
+    System.out.println(".............................Welcome to our services catalog.............................\n");
+
+    for (int i = 0; i < serviceCatalog.size(); i++) {
+        Services service = serviceCatalog.get(i);
+        System.out.println((i + 1) + ". " + service.getName() + " : " + service.getDescription() + " - " + service.getPrice() + " SR");
+    }
+
+    System.out.println("Please enter the number corresponding to the service you'd like to book:");
+}
+     /**
 // Method to check the type of service based on user choice and return the price
     public double checkType(int choice) {
         if (choice >= 1 && choice < serviceNames.size() ) {
@@ -74,4 +129,15 @@ public Services(){
             return 0.0; // Invalid choice or "Finish" selected, return 0
         }
     }
+    */
+     public double checkType(int choice, ArrayList<Services> serviceCatalog) 
+  {
+    if (choice >= 1 && choice < serviceCatalog.size()) {
+        // Display service details
+        System.out.println("You have selected: " + serviceCatalog.get(choice - 1).getName() + " service\n");
+        return serviceCatalog.get(choice - 1).getPrice(); // Return the price
+    } else {
+        return 0.0; // Invalid choice or "Finish" selected, return 0
+    }
+  }
 }
