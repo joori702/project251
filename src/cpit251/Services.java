@@ -132,7 +132,7 @@ public Services(String name, String description, double price){
         System.out.println((i + 1) + ". " + service.getName() + " : " + service.getDescription() + " - " + service.getPrice() + " SR");
     }
 
-//    System.out.println("Please enter the number corresponding to the service you'd like to book:");
+    //System.out.println("Please enter the number corresponding to the service you'd like to book:");
 }
 
     public static ArrayList<Services> getServiceCatalog() {

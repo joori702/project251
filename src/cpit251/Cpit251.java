@@ -288,7 +288,8 @@ public class Cpit251 {
     int choice=0;
     double totalWithTax;
     double totalPrice = 0.0;
-    ArrayList<Integer> selectedServices = new ArrayList<>();
+   // ArrayList<Integer> selectedServices = new ArrayList<>();
+    ArrayList<Services> selectedServices = new ArrayList<>();
     System.out.println("Please enter the number corresponding to the service you'd like to book:");
     
     while (true)
@@ -298,7 +299,8 @@ public class Cpit251 {
             if (choice >= 1 && choice < ServiceCatalog.size()) {
 
                 totalPrice += sCata.checkType(choice, ServiceCatalog);
-                selectedServices.add(choice);
+                //selectedServices.add(choice);
+                selectedServices.add(sCata.ServiceCatalog.get(choice - 1));
                 System.out.print("Please enter the number corresponding to the next service you'd like to book: ");
 
             } else if (choice == ServiceCatalog.size() && totalPrice == 0.0) {
@@ -315,21 +317,24 @@ public class Cpit251 {
             scan.next();
         }
     }
-        }
+    
+    printBill(selectedServices);
+      }
+    //---------------------------------------------------------------------
     public static void printBill(ArrayList<Services> selectedServices) {
-    double totalPrice = 0.0;
+        double totalPrice = 0.0;
 
-    // Calculate the total price of selected services
-    for (Services service : selectedServices) {
-        totalPrice += service.getPrice();
+        // Calculate the total price of selected services
+        for (Services service : selectedServices) {
+            totalPrice += service.getPrice();
+        }
+
+        // Calculate the total amount with tax
+        double totalWithTax = ComputeTax(totalPrice) + totalPrice;
+
+        // Print the invoice
+        generateInvoice(selectedServices, totalWithTax);
     }
-
-    // Calculate the total amount with tax
-    double totalWithTax = ComputeTax(totalPrice) + totalPrice;
-
-    // Print the invoice
-    generateInvoice(selectedServices, totalWithTax);
-}
 
 public static void generateInvoice(ArrayList<Services> selectedServices, double totalPrice) {
     System.out.println("-----------------------------------------------");
@@ -341,7 +346,7 @@ public static void generateInvoice(ArrayList<Services> selectedServices, double 
     }
     System.out.println("-----------------------------------------------");
     System.out.println("Total Amount: " + (int) totalPrice + " SR");
-    System.out.println("-----------------------------------------------");
+    System.out.println("-----------------------------------------------\n");
 }
-printBill(selectedServices);
+
 }     

@@ -88,6 +88,14 @@ public class ServicesTest {
     
     /**
      * Test of displayCatalog method, of class Services.
+     * 
+     * .............................Welcome to our services catalog.............................
+
+1. Shipment companies : help to choose the best company to ship your products - 100.0 SR
+2. Business consulting : Offer the best techniques for your concerns - 200.0 SR
+3. Technical issues : We'll guide you to graphic designers and developers who suit the nature of your product - 300.0 SR
+4. Finish : (calculate the total amount) - 0.0 SR
+Please enter the number corresponding to the service you'd like to book:
      */
     @Test
     public void testDisplayCatalog() {
@@ -115,7 +123,7 @@ public class ServicesTest {
         expectedResult += "2. Business consulting : Offer the best techniques for your concerns - 200.0 SR" + System.getProperty("line.separator");
         expectedResult += "3. Technical issues : We'll guide you to graphic designers and developers who suit the nature of your product - 300.0 SR" + System.getProperty("line.separator");
         expectedResult += "4. Finish : (calculate the total amount) - 0.0 SR" + System.getProperty("line.separator");
-//        expectedResult += "Please enter the number corresponding to the service you'd like to book:" + System.getProperty("line.separator");
+      //expectedResult += "Please enter the number corresponding to the service you'd like to book:" + System.getProperty("line.separator");
         
         assertEquals(expectedResult, out.toString());
     }
