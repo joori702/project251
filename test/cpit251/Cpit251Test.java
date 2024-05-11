@@ -54,31 +54,32 @@ public class Cpit251Test {
         assertEquals(expResult, result, 0.0);
     }
 
-    /**
-     * Test of main method, of class Cpit251.
-     */
-    @Test
-    public void testMain() {
- 
-        System.out.println("main");
-        String[] args = null;
-        Cpit251.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
     }
 
-    /**
-     * Test of owner method, of class Cpit251.
-     */
-    @Test
-    public void testOwner() {
-        System.out.println("owner");
-        Scanner scan = null;
-        ArrayList AddOwner = null;
-        Cpit251.owner(scan, AddOwner);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    @After
+    public void restoreStreams() {
+        System.setOut(originalOut);
     }
-    
+
+    @Test
+    public void testPrintBill() {
+        ArrayList<Services> selectedServices = new ArrayList<>();
+        selectedServices.add(new Services("Service1", "Description1", 50.0));
+        selectedServices.add(new Services("Service2", "Description2", 75.0));
+
+        Cpit251.printBill(selectedServices);
+
+        // Assert that specific elements exist in the output
+        String consoleOutput = outContent.toString();
+        assertTrue(consoleOutput.contains("Invoice for Selected Services"));
+        assertTrue(consoleOutput.contains("Service1"));
+        assertTrue(consoleOutput.contains("Service2"));
+        assertTrue(consoleOutput.contains("Total Amount"));
+    }
 }
