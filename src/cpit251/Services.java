@@ -21,7 +21,7 @@ import java.util.ArrayList;
     private String name;
     private String description;
     private double price;
-    
+    static ArrayList<Services> ServiceCatalog = new ArrayList<>();
     public Services(){
      
  }
@@ -43,6 +43,7 @@ public String getName() {
     public double getPrice() {
         return price;
     }
+    
 /**
 public Services(){
         serviceNames = new ArrayList<>();
@@ -103,11 +104,23 @@ public Services(String name, String description, double price){
     }
     */
     
-     void addService(ArrayList<Services> ServiceCatalog, Services serviceDetails) {
-        ServiceCatalog.add(serviceDetails);
+    public static void addService(ArrayList<Services> ServiceCatalog, Services serviceDetails) {
+        int indexToInsert = ServiceCatalog.size() - 1;
+        ServiceCatalog.add(indexToInsert, serviceDetails);
     }
     
     public void displayCatalog(ArrayList<Services> serviceCatalog) {
+//    Services s1 = new Services("Shipment companies", "help to choose the best company to ship your products", 100.0);
+//    Services s2 = new Services("Business consulting", "Offer the best techniques for your concerns", 200.0);
+//    Services s3 = new Services("Technical issues", "We'll guide you to graphic designers and developers who suit the nature of your product", 300.0);
+//    Services s4 = new Services("Finish", "(calculate the total amount)", 0.0);
+//
+//    Services sCata = new Services();
+//    ServiceCatalog.add(s1);
+//    ServiceCatalog.add(s2);
+//    ServiceCatalog.add(s3);
+//    ServiceCatalog.add(s4);
+//    sCata.displayCatalog(ServiceCatalog);
     System.out.println(".............................Welcome to our services catalog.............................\n");
 
     for (int i = 0; i < serviceCatalog.size(); i++) {
@@ -115,8 +128,16 @@ public Services(String name, String description, double price){
         System.out.println((i + 1) + ". " + service.getName() + " : " + service.getDescription() + " - " + service.getPrice() + " SR");
     }
 
-    System.out.println("Please enter the number corresponding to the service you'd like to book:");
+//    System.out.println("Please enter the number corresponding to the service you'd like to book:");
 }
+
+    public static ArrayList<Services> getServiceCatalog() {
+        return ServiceCatalog;
+    }
+
+    public static void setServiceCatalog(ArrayList<Services> ServiceCatalog) {
+        Services.ServiceCatalog = ServiceCatalog;
+    }
      /**
 // Method to check the type of service based on user choice and return the price
     public double checkType(int choice) {

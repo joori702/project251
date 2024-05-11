@@ -5,6 +5,7 @@
  */
 package cpit251;
 
+import static cpit251.Services.ServiceCatalog;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,13 +17,12 @@ public class Cpit251 {
     public static double totalWithTax;
     public static double totalPrice = 0.0;
     public static ArrayList<Integer> selectedServices = new ArrayList<>();
-    public static double ComputeTax(double total){
-        return total*0.15;
-    }
+    
     static ArrayList<Cousulter> AddCousulter = new ArrayList<Cousulter>();
     static ArrayList<Owner> AddOwner = new ArrayList<Owner>();
     static ArrayList<Manager> AddManager = new ArrayList<Manager>();
-    static ArrayList<Services> ServiceCatalog = new ArrayList<>();
+ 
+//    static ArrayList<Services> ServiceCatalog = new ArrayList<>();
 
 //-----------------------------------------------------------------------------------
     public static void main(String[] args) {
@@ -30,6 +30,16 @@ public class Cpit251 {
 //       owner(scan, AddOwner);
 //       Manager(scan, AddManager);
        String choose = null;
+       Services s1 = new Services("Shipment companies", "help to choose the best company to ship your products", 100.0);
+       Services s2 = new Services("Business consulting", "Offer the best techniques for your concerns", 200.0);
+       Services s3 = new Services("Technical issues", "We'll guide you to graphic designers and developers who suit the nature of your product", 300.0);
+       Services s4 = new Services("Finish", "(calculate the total amount)", 0.0);
+
+       Services sCata = new Services();
+        ServiceCatalog.add(s1);
+        ServiceCatalog.add(s2);
+        ServiceCatalog.add(s3);
+        ServiceCatalog.add(s4);
        
        //login and signup
        do{
@@ -112,7 +122,7 @@ public class Cpit251 {
                 else if(choose1.equalsIgnoreCase("O")){
                         owner(scan, AddOwner); 
                         //Cata(scan);
-                        Services(scan, ServiceCatalog);//updated
+                        Services(scan, Services.getServiceCatalog());//updated
                 }
                 else{
                      Manager(scan, AddManager); 
@@ -120,6 +130,10 @@ public class Cpit251 {
                 }
         
         
+    }
+    
+    public static double ComputeTax(double total){
+        return total*0.15;
     }
     
     public static void owner(Scanner scan,ArrayList AddOwner){
@@ -151,19 +165,19 @@ public class Cpit251 {
     //adding a manager 
     public static void Manager(Scanner scan, ArrayList AddManager) {
         //adding a manager
-        System.out.print("Enter owner First name: ");
+        System.out.print("Enter manager First name: ");
         String firstName = scan.next();
 
-        System.out.print("Enter owner last name: ");
+        System.out.print("Enter manager last name: ");
         String lastName = scan.next();
 
-        System.out.print("Enter onwer PhoneNumber: ");
+        System.out.print("Enter manager PhoneNumber: ");
         String phoneNumber = scan.next();
 
         System.out.print("Enter store Email: ");
         String email = scan.next();
 
-        System.out.print("Enter your employee ID: ");
+        System.out.print("Enter your ID: ");
         String id = scan.next();
 
         System.out.print("Enter your password: ");
@@ -174,18 +188,22 @@ public class Cpit251 {
         Minfo.addManager(AddManager, Minfo);
 
     }
+    
+    
     //manager controls
     public static void managerControls(Scanner scan) {
         report Report=new report();
         Owner owner= new Owner();
+        Services sCata = new Services();
         
         System.out.println("Enter to 'v' to view services catalog or Enter 'p' to print a report: ");
         //if v or p
         String choose2 = scan.next();
         
         if(choose2.equalsIgnoreCase("v")){
-        Services(scan, ServiceCatalog);
         
+//        Services(scan, ServiceCatalog);
+        sCata.displayCatalog(Services.getServiceCatalog());
         System.out.println("Enter the sevice name: ");
         String serviceName = scan.next();
         
@@ -200,9 +218,9 @@ public class Cpit251 {
         Services Sinfo = new Services(catalog,serviceName ,serviceDescription,servicePrice );
         sinfo.addService(addService ,Sinfo );
         */
-        Services sCata = new Services();
+        
         Services newAddService = new Services(serviceName, serviceDescription, servicePrice);
-        sCata.addService(ServiceCatalog, newAddService);
+        sCata.addService(Services.getServiceCatalog(),newAddService);
         System.out.println("Service added successfully");
         }
         
@@ -218,13 +236,13 @@ public class Cpit251 {
 
     public static void Cousulter(Scanner scan, ArrayList AddCousulter) {
         
-        System.out.print("Enter owner First name: ");
+        System.out.print("Enter First name: ");
         String firstName = scan.next();
 
-        System.out.print("Enter owner last name: ");
+        System.out.print("Enter last name: ");
         String lastName = scan.next();
 
-        System.out.print("Enter onwe PhoneNumber: ");
+        System.out.print("Enter PhoneNumber: ");
         String phoneNumber = scan.next();
 
         System.out.print("Enter store Email: ");
@@ -254,23 +272,24 @@ public class Cpit251 {
     //Display catalog Section
     private static void Services(Scanner scan, ArrayList ServiceCatalog){
         
-    Services s1 = new Services("Shipment companies", "help to choose the best company to ship your products", 100.0);
-    Services s2 = new Services("Business consulting", "Offer the best techniques for your concerns", 200.0);
-    Services s3 = new Services("Technical issues", "We'll guide you to graphic designers and developers who suit the nature of your product", 300.0);
-    Services s4 = new Services("Finish", "(calculate the total amount)", 0.0);
-
+//    Services s1 = new Services("Shipment companies", "help to choose the best company to ship your products", 100.0);
+//    Services s2 = new Services("Business consulting", "Offer the best techniques for your concerns", 200.0);
+//    Services s3 = new Services("Technical issues", "We'll guide you to graphic designers and developers who suit the nature of your product", 300.0);
+//    Services s4 = new Services("Finish", "(calculate the total amount)", 0.0);
+//
     Services sCata = new Services();
-    sCata.addService(ServiceCatalog, s1);
-    sCata.addService(ServiceCatalog, s2);
-    sCata.addService(ServiceCatalog, s3);
-    sCata.addService(ServiceCatalog, s4);
+//    sCata.addService(ServiceCatalog, s1);
+//    sCata.addService(ServiceCatalog, s2);
+//    sCata.addService(ServiceCatalog, s3);
+//    sCata.addService(ServiceCatalog, s4);
     sCata.displayCatalog(ServiceCatalog);
     
     int choice=0;
     double totalWithTax;
     double totalPrice = 0.0;
     ArrayList<Integer> selectedServices = new ArrayList<>();
-
+    System.out.println("Please enter the number corresponding to the service you'd like to book:");
+    
     while (true)
     {
         if (scan.hasNextInt()) {
