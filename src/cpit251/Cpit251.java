@@ -303,8 +303,10 @@ public class Cpit251 {
 
             } else if (choice == ServiceCatalog.size() && totalPrice == 0.0) {
                 System.out.println("Please enter the number corresponding to the next service you'd like to book:(You have to select a service)");
-            } else if (choice == ServiceCatalog.size() && totalPrice != 0.0) {
+            } else if (choice == ServiceCatalog.size() && totalPrice != 0.0) 
+            {
                 break;
+
             } else {
                 System.out.println("Invalid input. Please enter a number between 1 and " + ServiceCatalog.size());
             }
@@ -313,12 +315,33 @@ public class Cpit251 {
             scan.next();
         }
     }
-                    totalWithTax=ComputeTax(totalPrice)+totalPrice;
-                    System.out.println("");
-                    
-                    System.out.println("Total amount: " + (int)totalWithTax +" SR");
-    
-     
+        }
+    public static void printBill(ArrayList<Services> selectedServices) {
+    double totalPrice = 0.0;
+
+    // Calculate the total price of selected services
+    for (Services service : selectedServices) {
+        totalPrice += service.getPrice();
+    }
+
+    // Calculate the total amount with tax
+    double totalWithTax = ComputeTax(totalPrice) + totalPrice;
+
+    // Print the invoice
+    generateInvoice(selectedServices, totalWithTax);
 }
-    
+
+public static void generateInvoice(ArrayList<Services> selectedServices, double totalPrice) {
+    System.out.println("-----------------------------------------------");
+    System.out.println("           Invoice for Selected Services      ");
+    System.out.println("-----------------------------------------------");
+    for (int i = 0; i < selectedServices.size(); i++) {
+        Services service = selectedServices.get(i);
+        System.out.println((i + 1) + ". " + service.getName() + " : " + service.getDescription() + " - " + service.getPrice() + " SR");
+    }
+    System.out.println("-----------------------------------------------");
+    System.out.println("Total Amount: " + (int) totalPrice + " SR");
+    System.out.println("-----------------------------------------------");
 }
+printBill(selectedServices);
+}     
