@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cpit251Test;
-//import 
+package cpit251;
 
-import cpit251.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -16,46 +17,68 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Eng. Lilas Al Araj
+ * @author hp
  */
 public class paymentTest {
-
+    
     public paymentTest() {
     }
-
-    @Test
-    public void testPrintBill() {
-        Service service = new Service("name of service", "description of dervice", 330.0);
-        Payment instance = new Payment("xxx", "Amal", "Ahmed");
-        instance.addServic(service);
-        assertNotNull(instance.printBill());
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
     }
 
     /**
-     * Test of subTotal method, of class payment.
+     * Test of ComputeTax method, of class Cpit251.
      */
     @Test
-    public void testSubTotal() {
-
-        Service service = new Service("name of service", "description of dervice", 330.0);
-
-        Payment instance = new Payment("xxx", "Amal", "Ahmed");
-        instance.addServic(service);
-        instance.setDiscount(20.0);
-        double expResult = 310.0;
-        double result = instance.subTotal();
-        assertEquals(expResult, result, 0);
+    public void testComputeTax() {
+        System.out.println("ComputeTax");
+        double total = 100.0;
+        double expResult = 15.0;
+        double result = Cpit251.ComputeTax(total);
+        assertEquals(expResult, result, 0.0);
     }
 
-    /**
-     * Test of calculateTax method, of class payment.
-     */
+   private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
+
+    @Before
+    public void setUpStreams() {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @After
+    public void restoreStreams() {
+        System.setOut(originalOut);
+    }
+
     @Test
-    public void testCalculateTax() {
-        double subtotal = 69;
-        double expResult = 10.35;
-        double result = Payment.calculateTax(subtotal);
-        assertEquals(expResult, result, 0);
-    }
+    public void testpayment() {
+        ArrayList<Services> selectedServices = new ArrayList<>();
+        selectedServices.add(new Services("Service1", "Description1", 50.0));
+        selectedServices.add(new Services("Service2", "Description2", 75.0));
 
+        payment.payment(selectedServices);
+
+        // Assert that specific elements exist in the output
+        String consoleOutput = outContent.toString();
+        assertTrue(consoleOutput.contains("Invoice for Selected Services"));
+        assertTrue(consoleOutput.contains("Service1"));
+        assertTrue(consoleOutput.contains("Service2"));
+        assertTrue(consoleOutput.contains("Total Amount"));
+    }
+    
 }
