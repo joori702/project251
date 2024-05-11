@@ -8,7 +8,7 @@ package cpit251;
 import static cpit251.Services.ServiceCatalog;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import  static cpit251.payment.payment;
 /**
  *
  * @author HQ
@@ -318,35 +318,8 @@ public class Cpit251 {
         }
     }
     
-    printBill(selectedServices);
+    payment(selectedServices);
       }
-    //---------------------------------------------------------------------
-    public static void printBill(ArrayList<Services> selectedServices) {
-        double totalPrice = 0.0;
-
-        // Calculate the total price of selected services
-        for (Services service : selectedServices) {
-            totalPrice += service.getPrice();
-        }
-
-        // Calculate the total amount with tax
-        double totalWithTax = ComputeTax(totalPrice) + totalPrice;
-
-        // Print the invoice
-        generateInvoice(selectedServices, totalWithTax);
-    }
-
-public static void generateInvoice(ArrayList<Services> selectedServices, double totalPrice) {
-    System.out.println("-----------------------------------------------");
-    System.out.println("           Invoice for Selected Services      ");
-    System.out.println("-----------------------------------------------");
-    for (int i = 0; i < selectedServices.size(); i++) {
-        Services service = selectedServices.get(i);
-        System.out.println((i + 1) + ". " + service.getName() + " : " + service.getDescription() + " - " + service.getPrice() + " SR");
-    }
-    System.out.println("-----------------------------------------------");
-    System.out.println("Total Amount: " + (int) totalPrice + " SR");
-    System.out.println("-----------------------------------------------\n");
-}
+    
 
 }     
