@@ -4,7 +4,9 @@ package cpit251;
 import java.util.ArrayList;
 
 public class Manager extends user{
-
+    private String name;
+    private String description;
+    private double price;
      //Constructor 
      public Manager( ){
     
@@ -12,6 +14,12 @@ public class Manager extends user{
     public Manager(String firstName, String lastName, String phoneNumber, String email, String id, String passWord) {
         super(firstName, lastName, phoneNumber, email, id, passWord);
     }
+    
+    public Manager(String name, String description, double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+}
     
     
     /**
@@ -35,4 +43,7 @@ public class Manager extends user{
         AddManager.add(Minfo);
         System.out.println(Minfo.toString());
     }
+     
+     
+     
 }

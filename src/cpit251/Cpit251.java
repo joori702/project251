@@ -194,7 +194,8 @@ public class Cpit251 {
     public static void managerControls(Scanner scan) {
         report Report=new report();
         Owner owner= new Owner();
-        Services sCata = new Services();
+        
+        Services s= new Services();
         
         System.out.println("Enter to 'v' to view services catalog or Enter 'p' to print a report: ");
         //if v or p
@@ -203,7 +204,7 @@ public class Cpit251 {
         if(choose2.equalsIgnoreCase("v")){
         
 //        Services(scan, ServiceCatalog);
-        sCata.displayCatalog(Services.getServiceCatalog());
+        s.displayCatalog(Services.getServiceCatalog());
         System.out.println("Enter the sevice name: ");
         String serviceName = scan.next();
         
@@ -220,7 +221,7 @@ public class Cpit251 {
         */
         
         Services newAddService = new Services(serviceName, serviceDescription, servicePrice);
-        sCata.addService(Services.getServiceCatalog(),newAddService);
+        s.addService(Services.getServiceCatalog(),newAddService);
         System.out.println("Service added successfully");
         }
         

@@ -105,8 +105,12 @@ public Services(String name, String description, double price){
     */
     
     public static void addService(ArrayList<Services> ServiceCatalog, Services serviceDetails) {
-        int indexToInsert = ServiceCatalog.size() - 1;
-        ServiceCatalog.add(indexToInsert, serviceDetails);
+        if(ServiceCatalog.size()>1){
+            int indexToInsert = ServiceCatalog.size() - 1;
+            ServiceCatalog.add(indexToInsert, serviceDetails);
+        }else{
+            ServiceCatalog.add(serviceDetails);
+        }
     }
     
     public void displayCatalog(ArrayList<Services> serviceCatalog) {
