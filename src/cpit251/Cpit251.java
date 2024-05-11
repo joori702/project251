@@ -206,10 +206,11 @@ public class Cpit251 {
 //        Services(scan, ServiceCatalog);
         s.displayCatalog(Services.getServiceCatalog());
         System.out.println("Enter the sevice name: ");
-        String serviceName = scan.next();
+        String serviceName = scan.nextLine();
+        scan.nextLine();
         
         System.out.println("Enter service description: ");
-        String serviceDescription = scan.next();
+        String serviceDescription = scan.nextLine();
         
         System.out.println("Enter service price: ");
         double servicePrice = scan.nextDouble();
