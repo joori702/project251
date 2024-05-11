@@ -105,7 +105,7 @@ public Services(String name, String description, double price){
     */
     
     public static void addService(ArrayList<Services> ServiceCatalog, Services serviceDetails) {
-        if(ServiceCatalog.size()>1){
+        if(serviceDetails.getName()!="Shipment companies"& serviceDetails.getName()!="Business consulting"&serviceDetails.getName()!="Technical issues"&serviceDetails.getName()!="Finish"){
             int indexToInsert = ServiceCatalog.size() - 1;
             ServiceCatalog.add(indexToInsert, serviceDetails);
         }else{

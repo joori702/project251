@@ -109,4 +109,5 @@ public class Payment {
     public static double calculateTax(double subtotal) {
         return subtotal * 0.15;
     }
+    
 }
