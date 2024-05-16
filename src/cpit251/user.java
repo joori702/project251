@@ -10,7 +10,7 @@ public class user {
     public String id;
     public String passWord;
     
-    //  Constructor
+    //Constructors
     public user(){
         
     }

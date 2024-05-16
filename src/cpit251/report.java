@@ -5,9 +5,7 @@ import java.util.ArrayList;
 
 public class report extends Services{
 
-    //consrtuctor
-   
-    
+    //methods
     void generateReport(String firstName,ArrayList selectedServices, double totalPrice, double totalWithTax){
         System.out.println("------------------------------------------------------------------------");
         System.out.println(firstName+"'s report");
